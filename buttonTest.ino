@@ -75,7 +75,7 @@ void BUY(){
     inputMode = 1;
   }
   else {
-    if (balance == "null"){
+    if (dataVB == ""){
         //LCD PRINT PLEASE WAIT
     }
 
