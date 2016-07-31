@@ -1,19 +1,11 @@
 
-String trigRFID  = "SENDRFID";
-String trigBUY = "SENDBUY";
-int amount;
+int amount = 0;
 int mode = 1;
-
-
-
-
 String RFID_KEY = "12002935500";
-
 int inputMode = 1; //trigger for input
-
 int balance = 0;
-
 int price = 4; 
+String dataVB = "";
 
 void setup() {
   pinMode(13,OUTPUT);
@@ -30,7 +22,7 @@ void loop() {
   case 1: ///////////////////////////RFID INPUT 
   {
   int RFID = digitalRead(10);
-  //PRINT "TAP YOUR RFID"
+  //LCD PRINT "TAP YOUR RFID"
     if (RFID == HIGH){
     digitalWrite(13,HIGH);
     Serial.println(RFID_KEY); // KEY SEND TO VB
@@ -50,6 +42,10 @@ void loop() {
   if(CANCEL == HIGH) {
     inputMode = 1;
     }
+
+    //BUYING PROCESS HERE!
+    BUY();
+      
   }
   break;
 
@@ -68,7 +64,7 @@ void loop() {
 //////////////////////////////////////////////////////////////////////////////////
 
     //BUYING & PRINTING
-    
+void BUY(){
   switch(mode)
   case 1: //GET DATA FROM VB (BALANCE) OR IF NOT EXIST
   {
@@ -151,10 +147,16 @@ void loop() {
   }
   break;
   
-  default:
+  default: // RESET BACK TO DEFAULT VALUES
+    amount = 0;
     mode = 1;
-
+    dataVB = "";
+    RFID_KEY = "";
+    inputMode = 1;
+    balance = 0;
   break;
+
+}
 
   // delay(2000);
 
