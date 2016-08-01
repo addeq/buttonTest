@@ -1,6 +1,9 @@
 
+
+
+
 int amount = 0;
-int mode = 1;
+int mode = 1; 
 String RFID_KEY = "12002935500";
 int inputMode = 1; //trigger for input
 int balance = 0;
@@ -41,10 +44,12 @@ void loop() {
 
   if(CANCEL == HIGH) {
     inputMode = 1;
+    // send data to VB for reset
     }
-
+  else {
     //BUYING PROCESS HERE!
     BUY();
+  }
       
   }
   break;
@@ -60,7 +65,7 @@ void loop() {
       dataVB = Serial.readString();
       }
       
-
+}
 //////////////////////////////////////////////////////////////////////////////////
 
     //BUYING & PRINTING
@@ -117,10 +122,7 @@ void BUY(){
     changeBalance();
   }
  }
-
-
-
-
+ 
  //LCD PRINT BALANCE, AMOUNT, BOOKLET COUNT
 
  if(OK == HIGH)
@@ -166,7 +168,3 @@ void BUY(){
   amount = booklet * price;
   balance -= amount;
   }
-
-   
-
-}
